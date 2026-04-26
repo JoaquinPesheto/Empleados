@@ -1,0 +1,105 @@
+package ar.com.unpaz.main;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import ar.com.unpaz.model.*;
+import ar.com.unpaz.repositoryImpl.LeerArchivoRepoImpl;
+import ar.com.unpaz.serviceImpl.GestionEmpleadoServiceImpl;
+import ar.com.unpaz.serviceImpl.LeerArchivoServiceImpl;
+
+public class Main {
+
+	public static void main(String[] args) {
+		GestionEmpleadoServiceImpl gestion = new GestionEmpleadoServiceImpl();
+		
+		Scanner scanner = new Scanner(System.in);
+        List<Admin> empleados = new ArrayList<Admin>();	
+        
+        LeerArchivoRepoImpl lectura = new LeerArchivoRepoImpl();
+        empleados = lectura.lista();
+		int option;
+		
+        do {
+        	
+
+            System.out.println("\n===== SISTEMA EMPLEADOS =====");
+            System.out.println("1. Agregar empleado");
+            System.out.println("2. Buscar empleado");
+            System.out.println("3. Dar de baja empleado");
+            System.out.println("4. lista de Empleados");
+            System.out.println("5. Mostrar sueldos");
+            System.out.println("6. Cantidad Inactivos");
+            System.out.println("7. mayor sueldo");
+            System.out.println("8. Salir");
+            System.out.print("Seleccione una opcion: ");
+            option = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (option) {
+            case 1:
+                System.out.print("Numero de legajo: ");
+                String legajo = scanner.nextLine();
+                
+                System.out.print("Nombre: ");
+                String nombre = scanner.nextLine();
+
+                System.out.print("Sueldo: ");
+                double sueldo = scanner.nextDouble();
+                
+                System.out.print("Horas por semana: ");
+                int horas = scanner.nextInt();
+                System.out.print("Esta Activo? ");
+                boolean activo = scanner.nextBoolean();
+                
+                System.out.print("Adicional: ");
+                double adicional = scanner.nextDouble();
+                
+
+                Admin empleado = new Admin(legajo,nombre,sueldo,horas,activo,adicional);
+                gestion.agregarEmpleado(empleados, empleado);
+                break;
+
+            case 2:
+                System.out.print("Ingrese numero de legajo: ");
+                String buscarlegajo = scanner.nextLine();
+                gestion.buscarEmpleado(empleados, buscarlegajo);
+                break;
+
+            case 3:
+                System.out.print("Ingrese legajo a dar de baja: ");
+                String baja = scanner.nextLine();
+
+                gestion.darBaja(empleados, baja);
+                break;
+
+            case 4:
+            	gestion.listarEmpleados(empleados);
+                break;
+
+            case 5:
+            	gestion.mostrarSueldo(empleados, 0);
+                break;
+                
+            case 6:
+            	gestion.cantidadInactivos(empleados, true);
+            	break;
+            	
+            case 7:
+                gestion.mayorSueldo(empleados, 0);
+            	break;
+
+            case 8:
+                System.out.println("Saliendo del sistema...");
+                break;
+
+            default:
+                System.out.println("Opcion invalida");
+        }
+
+    } while (option != 8);
+
+    scanner.close();
+	}
+}

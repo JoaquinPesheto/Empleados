@@ -1,0 +1,79 @@
+package ar.com.unpaz.model;
+
+public abstract class Empleado {
+	
+	String legajo;
+	String nombre;
+	double sueldo;
+	int horas;
+	boolean activo;
+	
+	public Empleado(String legajo, String nombre, double sueldo, int horas, boolean activo) {
+		super();
+		this.legajo = legajo;
+		this.nombre = nombre;
+		this.sueldo = sueldo;
+		this.horas = horas;
+		this.activo = activo;
+	}
+	
+	
+	public Empleado() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String toString() {
+		return " Legajo: " + legajo + " Nombre: " + nombre + " Sueldo: " + sueldo + " Horas Trabajadas: " + horas + " Es activo: " + activo;
+	}
+	
+	abstract double calcularSueldo();
+	
+	
+	
+	public String getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(String legajo) {
+		this.legajo = legajo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public double getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(double sueldo) {
+		this.sueldo = sueldo;
+	}
+
+	public int getHoras() {
+		return horas;
+	}
+
+	public void setHoras(int horas) {
+		this.horas = horas;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+
+	
+	
+	
+
+}

@@ -1,0 +1,37 @@
+package ar.com.unpaz.model;
+
+public class Admin extends Empleado{
+	
+	double adicional;
+
+	public Admin(String legajo, String nombre, double sueldo, int horas, boolean activo, double adicional) {
+		super(legajo, nombre, sueldo, horas, activo);
+		this.adicional = adicional;
+	}
+
+
+	
+
+	public Admin(String legajo, String nombre, double sueldo, int horas, double adicional2) {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	@Override
+	public double calcularSueldo() {
+		sueldo += adicional;
+		return sueldo;
+	}
+
+	public double getAdicional() {
+		return adicional;
+	}
+
+	public void setAdicional(double adicional) {
+		this.adicional = adicional;
+	}
+
+}
